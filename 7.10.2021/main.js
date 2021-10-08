@@ -33,30 +33,28 @@
 
 //!4
 
-const api_key = "641974375fb31ab9962b7f26bce1a2a0";
+const apiKey = `641974375fb31ab9962b7f26bce1a2a0`;
 const tempCont = document.getElementById("tempCont");
-let btn = document.getElementById("btn");
 let cityInput = document.getElementById("cityInput");
-let cityValue = cityInput.value;
+let cityName = cityInput.value;
+let btn = document.getElementById("btn");
 
-function fetchFunc(city) {
-  fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`,
-    {
-      method: "GET",
+fetch(
+  `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`,
+  { method: "GET" }
+)
+  .then((response) => {
+    console.log(response);
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+    if (Response.cod == 404) {
+      `${Response.message}`;
     }
-  )
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-      if (response.code == 404) {
-        `<h1>${response.message}</h1>`;
-      }
-      tempCont.innerHTML += `${response.main.temp}`;
-    })
-    .catch((error) => console.log(error));
-}
-fetchFunc("london");
-btn.onclick = fetchFunc(cityValue);
+    tempCont.innerHTML += `${Response.main.temp}`;
+  })
+  .catch((error) => console.log(error));
+// }
+// fetchFunc(cityName);
+// btn.onclick = fetchFunc(cityName);
