@@ -32,29 +32,30 @@
 //   });
 
 //!4
+// const apiKey = `641974375fb31ab9962b7f26bce1a2a0`;
+// const tempCont = document.getElementById("tempCont");
+// let cityInput = document.getElementById("cityInput");
+// let cityName = cityInput.value;
+// let btn = document.getElementById("btn");
 
-const apiKey = `641974375fb31ab9962b7f26bce1a2a0`;
-const tempCont = document.getElementById("tempCont");
-let cityInput = document.getElementById("cityInput");
-let cityName = cityInput.value;
-let btn = document.getElementById("btn");
-
-fetch(
-  `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`,
-  { method: "GET" }
-)
-  .then((response) => {
-    console.log(response);
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-    if (Response.cod == 404) {
-      `${Response.message}`;
-    }
-    tempCont.innerHTML += `${Response.main.temp}`;
-  })
-  .catch((error) => console.log(error));
+// function fetchFunc() {
+  // fetch(
+    // `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`,
+    // { method: "GET" }
+//   )
+//     .then((response) => {
+//       console.log(response);
+//       // return response.json();
+//     })
+//     .then((data) => {
+//       let convert = JSON.parse(data);
+//       console.log(convert);
+//       // console.log(response.data);
+//       // if (response.cod == 404) {
+//       // `${response.message}`;
+//       // }
+//       tempCont.innerHTML += `${response.main.temp}`;
+//     })
+//     .catch((error) => console.log("you have some error",error));
 // }
-// fetchFunc(cityName);
-// btn.onclick = fetchFunc(cityName);
+// btn.onclick = fetchFunc();
