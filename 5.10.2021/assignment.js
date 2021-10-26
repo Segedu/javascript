@@ -27,7 +27,7 @@
 // }
 
 //!ajax_13
-// let API_KEY = "a41bcc3062077bf602059436e8b26556";
+// const API_KEY = process.env.exchange_rates_api;
 // const url = `http://api.exchangeratesapi.io/v1/latest?access_key=${API_KEY}`;
 // const containerDiv = document.getElementById("rates");
 // const btn = document.getElementById("exchangeBtn");
@@ -51,7 +51,7 @@
 // }
 
 //!ajax_14-not finished
-// let API_KEY = "a41bcc3062077bf602059436e8b26556";
+// const API_KEY = process.env.exchange_rates_api;
 // const url = `http://api.exchangeratesapi.io/v1/latest?access_key=${API_KEY}`;
 // const containerDiv = document.getElementById("rates");
 // const btn = document.getElementById("exchangeBtn");
@@ -65,10 +65,11 @@
 //       let userChoice = document.getElementById("coinType").value;
 //       if (
 //         response.status === 200 &&
-//         userChoice === response.data.rates.userChoice
+//         userChoice === response.data.rates
 //       ) {
+//         console.log(userChoice);
 //         let input = document.getElementById("inputNum");
-//         let result = Math.floor(input.value / response.data.rates.userChoice);
+//         let result = Math.floor(input.value / response.data.rates);
 //         containerDiv.innerHTML = `<p>Euro: ${result} €</p><p>${response.data.rates.userChoice}
 //         </p>`;
 //         console.log(response);
