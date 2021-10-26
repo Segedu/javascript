@@ -5,15 +5,53 @@ const express = require("express"),
   PORT = 8080;
 
 const tasks = [
-  { name: "clean", isComplited: true },
-  { name: "eat", isComplited: false },
-  { name: "sleep", isComplited: true },
+  // { name: "clean", completed: true, date: new Date(), id: 1 },
+  // { name: "eat", completed: false, date: new Date(), id: 2 },
+  // { name: "sleep", completed: true, date: new Date(), id: 3 },
 ];
-
+app.use(express.json());
 app.use(express.static(publicPath));
 
 app.get("/tasks", (req, res) => {
   res.send(tasks);
+});
+
+app.get("/tasks/:id", (req, res) => {
+  const id = req.params.id;
+  const found = tasks.find((task) => task.id == id);
+  if (found) {
+    return res.send(found);
+  }
+  res.sendStatus(404);
+  console.log("cant find this page/request");
+});
+
+let idNum = 0;
+app.post("/tasks", (req, res) => {
+  const name = req.body.name;
+  console.log(name);
+  if (name === "" || name === undefined || name === null) {
+    console.log("error. you must provide task name");
+    res.sendStatus(400);
+    return;
+  }
+  const newTask = { name: name, completed: false, date: new Date(), id: idNum };
+  idNum++;
+  tasks.push(newTask);
+  console.log(tasks);
+  res.sendStatus(201);
+});
+
+app.delete("/tasks/:id", (req, res) => {
+  const id = req.params.id;
+  const index = tasks.findIndex((task) => {
+    task.id == id;
+  });
+  if (index == -1) {
+    return res.sendStatus(404);
+  }
+  tasks.splice(index, 1);
+  res.sendStatus(200);
 });
 
 app.listen(PORT);

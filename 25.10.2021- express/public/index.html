@@ -10,12 +10,34 @@
     <header></header>
     <main>
       <h1>hello</h1>
-      <button id="btn" onclick="printConsole()">Send</button>
+      <form id="idForm">
+        <input
+          type="text"
+          name="name"
+          id="taskNameId"
+          placeholder="enter task"
+        />
+        <input type="submit" value="create task" />
+        <input
+          type="text"
+          name="search"
+          id="searchInput"
+          placeholder="search by id"
+        />
+        <!-- <button id="search by id" onclick="searchById()">search by id</button> -->
+        <!-- <input type="submit" value="search by id" /> -->
+      </form>
+      <button id="btn" onclick="getTasks()">get all tasks</button>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
-      function printConsole() {
+      document.getElementById("idForm").addEventListener("submit", addTask);
+      // document
+      // .getElementById("search by id")
+      // .addEventListener("click", searchById);
+
+      function getTasks() {
         axios
           .get("/tasks")
           .then(function (response) {
@@ -28,6 +50,35 @@
             console.log(error);
           });
       }
+
+      function addTask(e) {
+        e.preventDefault();
+        const name = document.getElementById("taskNameId").value;
+        axios
+          .post("/tasks", {
+            name,
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+      // function searchById() {
+      //   const search = document.getElementById("searchInput").value;
+      //   axios
+      //     .get(`/tasks/${search}`)
+      //     .then(function (response) {
+      //       if (response.status == 200) {
+      //         console.log(search);
+      //       }
+      //     })
+      //     .catch(function (error) {
+      //       console.log(error);
+      //     });
+      // }
     </script>
   </body>
 </html>
