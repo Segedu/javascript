@@ -4,7 +4,11 @@ const express = require("express"),
   app = express(),
   PORT = 8080;
 
-const tasks = [{ name: "clean" }, { name: "eat" }, { name: "sleep" }];
+const tasks = [
+  { name: "clean", isComplited: true },
+  { name: "eat", isComplited: false },
+  { name: "sleep", isComplited: true },
+];
 
 app.use(express.static(publicPath));
 

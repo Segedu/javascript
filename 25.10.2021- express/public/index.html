@@ -10,20 +10,19 @@
     <header></header>
     <main>
       <h1>hello</h1>
-      <button id="btn" onclick="printConsole()">click</button>
+      <button id="btn" onclick="printConsole()">Send</button>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script>
       function printConsole() {
-        url = "/tasks";
         axios
-          .get(url)
+          .get("/tasks")
           .then(function (response) {
             if (response.status == 200) {
-              console.log(response);
+              const tasks = response.data;
+              console.log(tasks);
             }
-            console.log(response.data);
           })
           .catch(function (error) {
             console.log(error);
