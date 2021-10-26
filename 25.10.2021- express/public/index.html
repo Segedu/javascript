@@ -18,14 +18,10 @@
           placeholder="enter task"
         />
         <input type="submit" value="create task" />
-        <input
-          type="text"
-          name="search"
-          id="searchInput"
-          placeholder="search by id"
-        />
-        <!-- <button id="search by id" onclick="searchById()">search by id</button> -->
-        <!-- <input type="submit" value="search by id" /> -->
+        <input type="text" name="search" id="searchInput" />
+        <button id="btnSearchById">search by id</button>
+        <input type="text" name="delete" id="deleteById" />
+        <button id="btnDelete">delete by id</button>
       </form>
       <button id="btn" onclick="getTasks()">get all tasks</button>
     </main>
@@ -33,9 +29,12 @@
 
     <script>
       document.getElementById("idForm").addEventListener("submit", addTask);
-      // document
-      // .getElementById("search by id")
-      // .addEventListener("click", searchById);
+      document
+        .getElementById("btnSearchById")
+        .addEventListener("click", searchById);
+      document
+        .getElementById("btnDelete")
+        .addEventListener("click", deleteById);
 
       function getTasks() {
         axios
@@ -66,19 +65,35 @@
           });
       }
 
-      // function searchById() {
-      //   const search = document.getElementById("searchInput").value;
-      //   axios
-      //     .get(`/tasks/${search}`)
-      //     .then(function (response) {
-      //       if (response.status == 200) {
-      //         console.log(search);
-      //       }
-      //     })
-      //     .catch(function (error) {
-      //       console.log(error);
-      //     });
-      // }
+      function searchById(e) {
+        e.preventDefault();
+        const search = document.getElementById("searchInput").value;
+        axios
+          .get(`/tasks/${search}`)
+          .then(function (response) {
+            if (response.status == 200) {
+              console.log(response.data);
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+
+      function deleteById(e) {
+        e.preventDefault();
+        const id = document.getElementById("deleteById").value;
+        axios
+          .get(`/tasks/${id}`)
+          .then(function (response) {
+            if (response.status == 200) {
+              //delete from array-not finished
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
     </script>
   </body>
 </html>

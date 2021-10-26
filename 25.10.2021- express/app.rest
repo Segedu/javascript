@@ -1,17 +1,17 @@
 GET http://localhost:8080/tasks
 
-###
-
-GET http://localhost:8080/tasks/3
+### 
+GET http://localhost:8080/tasks/1
 
 ###
 POST http://localhost:8080/tasks
-
-Content-Type: application/json
+content-type: application/json
 
 {
-"name":"jkjk"
+    "name":"sofof"
+
 }
 
 ###
 DELETE http://localhost:8080/tasks/1
+

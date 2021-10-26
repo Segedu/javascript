@@ -2,15 +2,12 @@ const express = require("express"),
   path = require("path"),
   publicPath = path.join(__dirname, "..", "public"),
   app = express(),
-  PORT = 8080;
+  PORT = 8080,
+  tasks = [];
 
-const tasks = [
-  // { name: "clean", completed: true, date: new Date(), id: 1 },
-  // { name: "eat", completed: false, date: new Date(), id: 2 },
-  // { name: "sleep", completed: true, date: new Date(), id: 3 },
-];
-app.use(express.json());
 app.use(express.static(publicPath));
+
+app.use(express.json());
 
 app.get("/tasks", (req, res) => {
   res.send(tasks);
@@ -29,11 +26,9 @@ app.get("/tasks/:id", (req, res) => {
 let idNum = 0;
 app.post("/tasks", (req, res) => {
   const name = req.body.name;
-  console.log(name);
   if (name === "" || name === undefined || name === null) {
     console.log("error. you must provide task name");
-    res.sendStatus(400);
-    return;
+    return res.sendStatus(400);
   }
   const newTask = { name: name, completed: false, date: new Date(), id: idNum };
   idNum++;
@@ -45,7 +40,7 @@ app.post("/tasks", (req, res) => {
 app.delete("/tasks/:id", (req, res) => {
   const id = req.params.id;
   const index = tasks.findIndex((task) => {
-    task.id == id;
+    return task.id == id;
   });
   if (index == -1) {
     return res.sendStatus(404);
