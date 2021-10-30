@@ -10,4 +10,4 @@ const express = require("express"),
 app.use(express.static(publicPath));
 app.set("view engine", "hbs");
 app.set("views", viewsPath);
-// app.("", partialsPath);
+
