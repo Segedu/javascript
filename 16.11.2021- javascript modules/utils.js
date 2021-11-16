@@ -1,4 +1,3 @@
-function sum(num) {
-    console.log(num);
+export default function sum(num1, num2) {
+    console.log(num1 + num2);
 }
-export { sum as sum }

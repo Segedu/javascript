@@ -8,5 +8,26 @@
 </head>
 <body>
     <script type="module" src="./main.js"> </script>
+    <script>
+        class Person{
+            constructor(firstName, lastName,age, address, writePerson){
+                this.firstName=firstName;
+                this.lastName=lastName;
+                this.age=age;
+                this.address=address;
+               
+            }
+             writePerson(){
+                console.log(this.firstName,this.lastName, this.age, this.address);
+            }
+        } 
+        const person1= new Person("segedu","abe",24,"jerusalem");
+        const person2= new Person("Anat","mersha",27, "rehovot");
+        // console.log(person1);
+        // console.log(person2);
+        person1.writePerson();
+        person2.writePerson();
+        
+    </script>
 </body>
 </html>
